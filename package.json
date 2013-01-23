@@ -1,0 +1,30 @@
+{
+  "name": "spatial-events",
+  "version": "0.0.0",
+  "description": "3d spatially-aware event emitter",
+  "main": "index.js",
+  "dependencies": {
+    "aabb-3d": "0.X.X"
+  },
+  "devDependencies": {
+    "tape": "~0.2.2"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/spatial-events.git"
+  },
+  "keywords": [
+    "event",
+    "emitter",
+    "spatial",
+    "aabb",
+    "octree"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "808d70fd9207f774b7a0fc02deb604930c67a82b"
+}
