@@ -31,19 +31,19 @@ proto.add = function(event, bbox, listener) {
     if(Math.floor(bbox.x0() / size) === Math.floor(bbox.x1() / size) &&
        Math.floor(bbox.y0() / size) === Math.floor(bbox.y1() / size) &&
        Math.floor(bbox.z0() / size) === Math.floor(bbox.z1() / size)) {
-      this.children.push(new this.constructor(
-        size
-      , aabb([
-            Math.floor(bbox.x0() / size) * size
-          , Math.floor(bbox.y0() / size) * size
-          , Math.floor(bbox.z0() / size) * size
-          ]
-        , [size, size, size]
-        )
-      , this
-      ))
-
-      return this.children[this.children.length - 1].add(event, bbox, listener)
+      var inst = new this.constructor(
+          size
+        , aabb([
+              Math.floor(bbox.x0() / size) * size
+            , Math.floor(bbox.y0() / size) * size
+            , Math.floor(bbox.z0() / size) * size
+            ]
+          , [size, size, size]
+          )
+        , this
+      )
+      this.children.push(inst)
+      return inst.add(event, bbox, listener)
     }
   }
 
@@ -61,17 +61,23 @@ proto.contains = function(bbox) {
 }
 
 proto.expand = function(bbox) {
-  var new_size = this.size * 2
+  var size = this.size
+    , new_size = size * 2
     , expanded = this.bbox.expand(bbox)
+    , new_i = Math.floor(bbox.x0() / size)
+    , new_j = Math.floor(bbox.y0() / size)
+    , new_k = Math.floor(bbox.z0() / size)
+    , cur_i = Math.floor(this.bbox.x0() / size)
+    , cur_j = Math.floor(this.bbox.y0() / size)
+    , cur_k = Math.floor(this.bbox.z0() / size)
     , new_base = [
-        bbox.x0() - this.bbox.x0() > 0 ? this.bbox.x0() : this.bbox.x0() - this.size
-      , bbox.y0() - this.bbox.y0() > 0 ? this.bbox.y0() : this.bbox.y0() - this.size
-      , bbox.z0() - this.bbox.z0() > 0 ? this.bbox.z0() : this.bbox.z0() - this.size
-      ]
+        new_i - cur_i >= 0 ? cur_i : cur_i - 1
+      , new_j - cur_j >= 0 ? cur_j : cur_j - 1
+      , new_k - cur_k >= 0 ? cur_k : cur_k - 1
+      ].map(function(ii) { return ii * size })
     , new_bbox = aabb(new_base, [new_size, new_size, new_size])
     , new_root = new this.constructor(new_size, new_bbox)
     , self = this
-
 
   this.parent = new_root
   this.grow(this.parent)
