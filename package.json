@@ -1,6 +1,6 @@
 {
   "name": "spatial-events",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "3d spatially-aware event emitter",
   "main": "index.js",
   "dependencies": {
