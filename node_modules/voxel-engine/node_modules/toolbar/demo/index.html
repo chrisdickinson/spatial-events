@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Voxel HUD</title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- Set a shorter title for iOS6 devices when saved to home screen -->
+    <meta name="apple-mobile-web-app-title" content="Voxel HUD">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link rel="stylesheet" href="ratchet.css">
+    <style type="text/css">
+      li:hover { cursor: hand; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+  <div class="content">
+    <p>
+      Icons designed by <a href="http://thenounproject.com/jacob" target="_blank">Jacob Halton</a> from The Noun Project
+    </p>
+    <nav class="bar-tab">
+      <ul class="tab-inner">
+        <li class="tab-item active">
+            <img class="tab-icon" src="icons/coffeemug.png">
+            <div class="tab-label">Mug</div>
+        </li>
+        <li class="tab-item">
+            <img class="tab-icon" src="icons/cow.png">
+            <div class="tab-label">Cow</div>
+        </li>
+        <li class="tab-item">
+            <img class="tab-icon" src="icons/eggs.png">
+            <div class="tab-label">Eggs</div>
+        </li>
+        <li class="tab-item">
+            <img class="tab-icon" src="icons/poptart.png">
+            <div class="tab-label">Poptart</div>
+        </li>
+        <li class="tab-item">
+            <img class="tab-icon" src="icons/toast.png">
+            <div class="tab-label">Toast</div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
