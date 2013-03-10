@@ -67,7 +67,7 @@ proto.remove = function(event, listener) {
 }
 
 proto.emit = function(event, bbox/*, ...args */) {
-  var args = slice.call(arguments, 2)
+  var args = slice.call(arguments, 1)
 
   // support point emitting
   if('0' in bbox) {
