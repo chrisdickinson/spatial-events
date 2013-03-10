@@ -3,10 +3,10 @@ var S_EE = require('./index')
   , test = require('tape')
 
 test('s-ee on/emit/remove works as expected', function(assert) {
-  // test far apart listeners
   var s_ee = new S_EE
     , ev = 'data-'+Math.random()
     , triggered = []
+    , rem
 
   /*
              ^
@@ -18,6 +18,18 @@ test('s-ee on/emit/remove works as expected', function(assert) {
           /  V
   */
 
+  // test listener callback's arguments
+  s_ee.on(ev, aabb([-120, 120, -120], [3, 3, 3]), rem = function(position, anArg, anotherArg) {
+    assert.deepEqual(position, aabbArg)
+    assert.equal(anArg, 1)
+    assert.equal(anotherArg, 2)
+  })
+
+  var aabbArg = aabb([-121, 121, -121], [2, 2, 2])
+  s_ee.emit(ev, aabbArg, 1, 2)
+  s_ee.remove(ev, rem)
+
+  // test far apart listeners
 
   s_ee.on(ev, aabb([-120, 120, -120], [3, 3, 3]), function() {
     triggered.push('A')
@@ -102,7 +114,6 @@ test('s-ee on/emit/remove works as expected', function(assert) {
 
 
   // test overlapping listener + small listener
-  var rem
   s_ee.on(ev, aabb([-200, -200, -200], [400, 400, 400]), rem = function() {
     triggered.push('O')
   })
