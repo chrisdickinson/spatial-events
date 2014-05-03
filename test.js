@@ -142,6 +142,17 @@ test('s-ee on/emit/remove works as expected', function(assert) {
   s_ee.emit(ev, aabb([400, 4000, 9999900], [200, 400, 400]))
   assert.deepEqual(triggered, ['I'], 'I'); triggered.length = 0
 
+  // test default to infinite event
+  s_ee.on(ev, rem = function() {
+    triggered.push('+I')
+  })
+  s_ee.emit(ev, aabb([400, 4000, 9999900], [200, 400, 400]))
+
+  assert.deepEqual(triggered, ['I', '+I'], 'I +I'); triggered.length = 0
+
+  s_ee.remove(ev, rem)
+
+
   // test infinite event
 
   s_ee.emit(ev, aabb([-Infinity, -Infinity, -Infinity], [Infinity, Infinity, Infinity]))

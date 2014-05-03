@@ -17,6 +17,10 @@ proto.size = 16
 proto.addListener = 
 proto.addEventListener = 
 proto.on = function(event, bbox, listener) {
+  if (typeof bbox === 'function') {
+    listener = bbox
+    bbox = aabb([-Infinity, -Infinity, -Infinity], [Infinity, Infinity, Infinity])
+  }
   if(!finite(bbox)) {
     (this.infinites[event] = this.infinites[event] || []).push({
       bbox: bbox
